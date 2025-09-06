@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Funcionário</title>
+</head>
+<body>
+<h1>Editar Funcionário</h1>
+
+<form th:action="@{/funcionarios/editar/{id}(id=${funcionario.id})}" method="post">
+    Nome: <input type="text" name="nome" th:value="${funcionario.nome}"><br>
+    Email: <input type="email" name="email" th:value="${funcionario.email}"><br>
+    Senha: <input type="password" name="senha"><br>
+    Função: <input type="text" name="funcao" th:value="${funcionario.funcao}"><br>
+    <button type="submit">Atualizar</button>
+</form>
+
+<a th:href="@{/funcionarios}">Voltar</a>
+</body>
+</html>

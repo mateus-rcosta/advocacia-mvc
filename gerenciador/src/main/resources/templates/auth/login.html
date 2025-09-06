@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Sistema de Advocacia</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+
+<div class="card">
+    <h2 class="">Acesso ao Sistema</h2>
+
+    <form th:action="@{/login}" method="post" class="space-y-4">
+        <div>
+            <label for="username" class="">Email</label>
+            <input id="username" name="username" type="text"
+                   class="" />
+        </div>
+
+        <div>
+            <label for="password" class="">Senha</label>
+            <input id="password" name="password" type="password"
+                   class="" />
+        </div>
+
+        <div th:if="${param.error}" class="">
+            Usuário ou senha inválidos
+        </div>
+        <div th:if="${param.logout}" class="">
+            Logout realizado com sucesso
+        </div>
+
+        <div>
+            <button type="submit"
+                    class="">
+                Entrar
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

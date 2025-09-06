@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Funcionários</title>
+</head>
+<body>
+<h1>Funcionários</h1>
+
+<a th:href="@{/funcionarios/novo}">Novo Funcionário</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Função</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="funcionario : ${funcionarios}">
+        <td th:text="${funcionario.id}"></td>
+        <td th:text="${funcionario.nome}"></td>
+        <td th:text="${funcionario.email}"></td>
+        <td th:text="${funcionario.funcao}"></td>
+        <td>
+            <a th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">Editar</a>
+            <a th:href="@{/funcionarios/excluir/{id}(id=${funcionario.id})}">Excluir</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

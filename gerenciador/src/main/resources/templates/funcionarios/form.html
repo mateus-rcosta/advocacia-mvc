@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Novo Funcionário</title>
+</head>
+<body>
+<h1>Novo Funcionário</h1>
+
+<form th:action="@{/funcionarios}" method="post" th:object="${funcionario}">
+    Nome: <input type="text" th:field="*{nome}"><br>
+    Email: <input type="email" th:field="*{email}"><br>
+    Senha: <input type="password" th:field="*{senha}"><br>
+    Função: <input type="text" th:field="*{funcao}"><br>
+    <button type="submit">Salvar</button>
+</form>
+
+<a th:href="@{/funcionarios}">Voltar</a>
+</body>
+</html>
