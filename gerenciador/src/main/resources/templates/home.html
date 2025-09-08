@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Home</title>
 </head>
 <body>
 <h2>Bem-vindo!</h2>
-<p>Você está logado no sistema.</p>
+
+<p>
+    Logado como: 
+    <span th:text="${#authentication.principal.funcionario.nome}"></span> 
+    <br>
+    (<span th:text="${#authentication.principal.funcionario.email}"></span>)
+</p>
+
+<sec:authorize access="hasRole('ADMINISTRADOR')">
+    <a th:href="@{/funcionarios}">
+        Gerenciar Funcionários
+    </a>
+</sec:authorize>
 
 <form th:action="@{/logout}" method="post">
     <button type="submit">Sair</button>

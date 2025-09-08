@@ -18,7 +18,8 @@ public class FuncionarioUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + funcionario.getFuncao().name()));
+        System.out.println("ROLE_" + funcionario.getFuncao().name().toUpperCase());
+        return List.of(new SimpleGrantedAuthority("ROLE_" + funcionario.getFuncao().name().toUpperCase()));
     }
 
     @Override

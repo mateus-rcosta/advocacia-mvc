@@ -13,7 +13,6 @@ public record PostFuncionario(
     String email,
     @NotBlank @NotNull 
     String senha,
-    @NotBlank @NotNull 
     Funcao funcao
 ) {
 } 
