@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Home</title>
 </head>
@@ -14,11 +13,11 @@
     (<span th:text="${#authentication.principal.funcionario.email}"></span>)
 </p>
 
-<sec:authorize access="hasRole('ADMINISTRADOR')">
+<div sec:authorize="hasRole('ADMINISTRADOR')">
     <a th:href="@{/funcionarios}">
         Gerenciar Funcionários
     </a>
-</sec:authorize>
+</div>
 
 <form th:action="@{/logout}" method="post">
     <button type="submit">Sair</button>
