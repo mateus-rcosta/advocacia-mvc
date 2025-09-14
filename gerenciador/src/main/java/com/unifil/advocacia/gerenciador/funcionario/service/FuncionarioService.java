@@ -33,7 +33,6 @@ public class FuncionarioService {
         }
     }
 
-    @Transactional
     public Funcionario salvarFuncionario(PostFuncionario dto) {
         if (funcionarioRepository.existsByEmail(dto.email())) {
             throw new BadRequestException("Já existe um funcionário com esse e-mail.");
@@ -56,7 +55,6 @@ public class FuncionarioService {
                 .orElseThrow(() -> new NotFoundException("Funcionário não encontrado com o ID informado"));
     }
 
-    @Transactional
     public Funcionario atualizarFuncionario(Long id, PutFuncionario dto) {
         Funcionario funcionario = funcionarioRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Funcionário não encontrado"));
