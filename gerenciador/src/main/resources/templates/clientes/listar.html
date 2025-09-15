@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Clientes</title>
+</head>
+
+<body>
+    <h1>Clientes</h1>
+
+    <a th:href="@{/clientes/novo}">Novo Cliente</a>
+
+    <div th:if="${errorMessage}" style="color:red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Data de Nascimento</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nome}"></td>
+                <td th:text="${cliente.cpf}"></td>
+                <td th:text="${#temporals.format(cliente.dataNascimento, 'dd/MM/yyyy')}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td th:text="${cliente.telefone}"></td>
+                <td>
+                    <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}">Editar</a>
+                    <a th:href="@{/clientes/excluir/{id}(id=${cliente.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Voltar</a>
+</body>
+
+</html>
