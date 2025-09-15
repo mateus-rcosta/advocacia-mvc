@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Faturamento</title>
+</head>
+<body>
+<h1>Editar Faturamento</h1>
+
+<form th:action="@{/faturamentos/editar/{id}(id=${faturamento.id})}" method="post" th:object="${faturamento}">
+    Contrato: <input type="text" th:value="${faturamento.contrato.titulo}" readonly><br>
+
+    Valor: <input type="number" step="0.01" th:field="*{valor}"><br>
+
+    <p>Data de Emissão Atual: <span th:text="${#temporals.format(faturamento.dataEmissao, 'dd/MM/yyyy HH:mm')}"></span></p>
+
+    <p th:if="${faturamento.dataPagamento != null}">Data de Pagamento Atual: <span th:text="${#temporals.format(faturamento.dataPagamento, 'dd/MM/yyyy HH:mm')}"></span></p>
+    Nova Data de Pagamento: <input type="datetime-local" th:field="*{dataPagamento}"><br>
+
+    Status:
+    <select th:field="*{status}">
+        <option th:value="PENDENTE" th:text="'PENDENTE'"></option>
+        <option th:value="PAGO" th:text="'PAGO'"></option>
+        <option th:value="ATRASADO" th:text="'ATRASADO'"></option>
+    </select><br>
+
+    <button type="submit">Atualizar</button>
+</form>
+
+<div th:if="${errorMessage}" style="color:red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<a th:href="@{/faturamentos}">Voltar</a>
+</body>
+</html>

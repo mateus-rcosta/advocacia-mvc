@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Faturamentos</title>
+</head>
+
+<body>
+    <h1>Faturamentos</h1>
+
+    <a th:href="@{/faturamentos/novo}">Novo Faturamento</a>
+
+    <div th:if="${errorMessage}" style="color:red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Contrato</th>
+                <th>Valor</th>
+                <th>Data Emissão</th>
+                <th>Data Pagamento</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="faturamento : ${faturamentos}">
+                <td th:text="${faturamento.id}"></td>
+                <td th:text="${faturamento.contrato.titulo}"></td>
+                <td th:text="${faturamento.valor}"></td>
+                <td th:text="${#temporals.format(faturamento.dataEmissao, 'dd/MM/yyyy HH:mm')}"></td>
+                <td
+                    th:text="${faturamento.dataPagamento != null ? #temporals.format(faturamento.dataPagamento, 'dd/MM/yyyy HH:mm') : '-'}">
+                </td>
+                <td th:text="${faturamento.status}"></td>
+                <td>
+                    <a th:href="@{/faturamentos/editar/{id}(id=${faturamento.id})}">Editar</a>
+                    <a th:href="@{/faturamentos/excluir/{id}(id=${faturamento.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Voltar</a>
+</body>
+
+</html>
