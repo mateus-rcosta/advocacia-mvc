@@ -15,9 +15,11 @@
         Função: <input type="text" th:field="*{funcao}"><br>
         <button type="submit">Salvar</button>
     </form>
+
     <div th:if="${errorMessage}" style="color:red;">
         <p th:text="${errorMessage}"></p>
     </div>
+
     <a th:href="@{/funcionarios}">Voltar</a>
 </body>
 

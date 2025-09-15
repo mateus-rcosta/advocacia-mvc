@@ -9,9 +9,11 @@
     <h1>Funcionários</h1>
 
     <a th:href="@{/funcionarios/novo}">Novo Funcionário</a>
+
     <div th:if="${errorMessage}" style="color:red;">
         <p th:text="${errorMessage}"></p>
     </div>
+
     <table border="1">
         <thead>
             <tr>
@@ -35,6 +37,7 @@
             </tr>
         </tbody>
     </table>
+    <a th:href="@{/}">Voltar</a>
 </body>
 
 </html>
