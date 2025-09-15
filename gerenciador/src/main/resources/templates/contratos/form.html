@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Novo Contrato</title>
+</head>
+<body>
+<h1>Novo Contrato</h1>
+
+<form th:action="@{/contratos}" method="post" th:object="${contrato}">
+    Título: <input type="text" th:field="*{titulo}" required><br>
+    Descrição: <textarea th:field="*{descricao}"></textarea><br>
+    Tipo: <input type="text" th:field="*{tipo}" maxlength="20"><br>
+    Data Início: <input type="datetime-local" th:field="*{dataInicio}" required><br>
+    Data Fim: <input type="datetime-local" th:field="*{dataFim}" required><br>
+    <button type="submit">Salvar</button>
+</form>
+
+<div th:if="${errorMessage}" style="color:red;">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<a th:href="@{/contratos}">Voltar</a>
+</body>
+</html>

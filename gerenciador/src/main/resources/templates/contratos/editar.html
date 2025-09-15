@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar Contrato</title>
+</head>
+
+<body>
+    <h1>Editar Contrato</h1>
+
+    <!-- Mostrar datas atuais de forma legível -->
+    <p>Data Início atual: <span th:text="${#temporals.format(contrato.dataInicio, 'dd/MM/yyyy HH:mm')}"></span></p>
+    <p>Data Fim atual: <span th:text="${#temporals.format(contrato.dataFim, 'dd/MM/yyyy HH:mm')}"></span></p>
+
+    <form th:action="@{/contratos/editar/{id}(id=${contrato.id})}" method="post" th:object="${contrato}">
+        Título: <input type="text" th:field="*{titulo}" required><br>
+        Descrição: <textarea th:field="*{descricao}"></textarea><br>
+        Tipo: <input type="text" th:field="*{tipo}" maxlength="20"><br>
+        Status:
+        <select th:field="*{status}">
+            <option th:value="ATIVO" th:text="'ATIVO'"></option>
+            <option th:value="ENCERRADO" th:text="'ENCERRADO'"></option>
+            <option th:value="SUSPENSO" th:text="'SUSPENSO'"></option>
+        </select><br>
+
+        Nova Data de Início: <input type="datetime-local" th:field="*{dataInicio}" required><br>
+        Nova Data de Fim: <input type="datetime-local" th:field="*{dataFim}" required><br>
+
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <div th:if="${errorMessage}" style="color:red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <a th:href="@{/contratos}">Voltar</a>
+
+</body>
+
+</html>
