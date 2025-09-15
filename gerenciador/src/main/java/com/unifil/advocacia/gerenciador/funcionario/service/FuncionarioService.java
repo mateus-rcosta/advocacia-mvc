@@ -1,7 +1,6 @@
 package com.unifil.advocacia.gerenciador.funcionario.service;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -75,7 +74,6 @@ public class FuncionarioService {
         return funcionarioRepository.save(funcionario);
     }
 
-    @Transactional
     public void excluirFuncionario(Long id) {
         existsById(id);
         funcionarioRepository.deleteById(id);
