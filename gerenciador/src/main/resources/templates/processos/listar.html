@@ -26,6 +26,7 @@
                 <th>Data Criação</th>
                 <th>Data Atualização</th>
                 <th>Ações</th>
+                <th>Documentos</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,9 @@
                 <td>
                     <a th:href="@{/processos/editar/{id}(id=${processo.id})}">Editar</a>
                     <a th:href="@{/processos/excluir/{id}(id=${processo.id})}">Excluir</a>
+                </td>
+                <td>
+                    <a th:href="@{'/documentos/por-processo/' + ${processo.id}}">📂 Ver Documentos</a>
                 </td>
             </tr>
         </tbody>

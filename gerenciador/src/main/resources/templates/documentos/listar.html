@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Documentos</title>
+</head>
+<body>
+    <h1>Gerenciador de Documentos</h1>
+
+    <!-- Exibir mensagem de sucesso ou erro -->
+    <div th:if="${mensagem}">
+        <p th:text="${mensagem}" style="color: green;"></p>
+    </div>
+
+    <!-- Formulário de Upload -->
+    <form method="post" enctype="multipart/form-data" th:action="@{/documentos/upload}">
+        <input type="file" name="file" required />
+        <input type="hidden" name="processoId" th:value="${processoId}" />
+        <button type="submit">Enviar Documento</button>
+    </form>
+
+    <hr/>
+
+    <!-- Lista de Documentos -->
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nome do Arquivo</th>
+                <th>Tipo</th>
+                <th>Data de Upload</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="doc : ${documentos}">
+                <td th:text="${doc.nomeOriginal}">nome.pdf</td>
+                <td th:text="${doc.tipoMime}">application/pdf</td>
+                <td th:text="${#temporals.format(doc.dataUpload, 'dd/MM/yyyy HH:mm')}">01/09/2025</td>
+                <td>
+                    <a th:href="@{'/documentos/download/' + ${doc.id}}">📥 Download</a>
+                    |
+                    <form th:action="@{'/documentos/delete/' + ${doc.id}}" method="post" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este documento?')">❌ Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/processos}">Voltar</a>
+</body>
+</html>
