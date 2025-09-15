@@ -7,13 +7,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.unifil.advocacia.gerenciador.cliente.service.ClienteService;
 import com.unifil.advocacia.gerenciador.contrato.dto.PostContrato;
 import com.unifil.advocacia.gerenciador.contrato.dto.PutContrato;
 import com.unifil.advocacia.gerenciador.contrato.model.Contrato;
 import com.unifil.advocacia.gerenciador.contrato.repository.ContratoRepository;
 import com.unifil.advocacia.gerenciador.exception.NotFoundException;
 import com.unifil.advocacia.gerenciador.funcionario.model.Funcionario;
-import com.unifil.advocacia.gerenciador.funcionario.repository.FuncionarioRepository;
+import com.unifil.advocacia.gerenciador.funcionario.service.FuncionarioService;
 import com.unifil.advocacia.gerenciador.security.UserDetails.FuncionarioUserDetails;
 
 @Service
@@ -23,7 +24,10 @@ public class ContratoService {
     private ContratoRepository contratoRepository;
 
     @Autowired
-    private FuncionarioRepository funcionarioRepository;
+    private FuncionarioService funcionarioService;
+
+    @Autowired
+    private ClienteService clienteService;
 
     public Contrato criarContrato(PostContrato dto) {
         Contrato contrato = new Contrato();
@@ -32,12 +36,12 @@ public class ContratoService {
         contrato.setDataInicio(dto.dataInicio());
         contrato.setDataFim(dto.dataFim());
         contrato.setTipo(dto.tipo());
-
+        
         // Associa o funcionário logado
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         FuncionarioUserDetails userDetails = (FuncionarioUserDetails) auth.getPrincipal();
         contrato.setFuncionario(userDetails.getFuncionario());
-
+        contrato.setCliente(clienteService.buscarClientePorId(dto.clienteId()));;
         return contratoRepository.save(contrato);
     }
 
@@ -73,8 +77,7 @@ public class ContratoService {
             contrato.setStatus(dto.status());
         }
         if (dto.funcionarioId() != null) {
-            Funcionario funcionario = funcionarioRepository.findById(dto.funcionarioId())
-                    .orElseThrow(() -> new NotFoundException("Funcionário não encontrado"));
+            Funcionario funcionario = funcionarioService.buscarFuncionarioPorId(id);
             contrato.setFuncionario(funcionario);
         }
 

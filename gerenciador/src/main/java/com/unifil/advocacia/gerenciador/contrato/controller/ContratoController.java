@@ -1,5 +1,6 @@
 package com.unifil.advocacia.gerenciador.contrato.controller;
 
+import com.unifil.advocacia.gerenciador.cliente.service.ClienteService;
 import com.unifil.advocacia.gerenciador.contrato.dto.PostContrato;
 import com.unifil.advocacia.gerenciador.contrato.dto.PutContrato;
 import com.unifil.advocacia.gerenciador.contrato.model.Contrato;
@@ -29,6 +30,9 @@ public class ContratoController {
     @Autowired
     private FuncionarioService funcionarioService;
 
+    @Autowired
+    private ClienteService clienteService;
+
     @GetMapping
     public String listarContratos(Model model, @ModelAttribute("errorMessage") String errorMessage) {
         model.addAttribute("contratos", contratoService.listarContratos());
@@ -41,8 +45,9 @@ public class ContratoController {
     @GetMapping("/novo")
     public String novoContratoForm(Model model) {
         if (!model.containsAttribute("contrato")) {
-            model.addAttribute("contrato", new PostContrato("", "", null, null, ""));
+            model.addAttribute("contrato", new PostContrato("", "", null, null, null, ""));
         }
+        model.addAttribute("cliente", clienteService.listarClientes()); 
         return "contratos/form";
     }
 
@@ -63,7 +68,7 @@ public class ContratoController {
         try {
             Contrato contrato = contratoService.buscarContratoPorId(id);
             model.addAttribute("contrato", contrato);
-            model.addAttribute("funcionarios", funcionarioService.listarFuncionarios()); 
+            model.addAttribute("funcionarios", funcionarioService.listarFuncionarios());
             return "contratos/editar";
         } catch (NotFoundException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());

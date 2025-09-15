@@ -17,6 +17,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Cliente</th>
             <th>Título</th>
             <th>Descrição</th>
             <th>Tipo</th>
@@ -30,6 +31,7 @@
     <tbody>
         <tr th:each="contrato : ${contratos}">
             <td th:text="${contrato.id}"></td>
+            <td th:text="${contrato.cliente.nome}"></td>
             <td th:text="${contrato.titulo}"></td>
             <td th:text="${contrato.descricao}"></td>
             <td th:text="${contrato.tipo}"></td>

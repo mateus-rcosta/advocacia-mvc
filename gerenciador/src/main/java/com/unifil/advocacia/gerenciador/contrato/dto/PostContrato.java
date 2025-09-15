@@ -13,6 +13,9 @@ public record PostContrato(
         String descricao,
 
         @NotNull 
+        Long clienteId,
+
+        @NotNull 
         LocalDateTime dataInicio,
 
         @NotNull 

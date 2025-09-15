@@ -16,11 +16,21 @@
         Título: <input type="text" th:field="*{titulo}" required><br>
         Descrição: <textarea th:field="*{descricao}"></textarea><br>
         Tipo: <input type="text" th:field="*{tipo}" maxlength="20"><br>
+        Cliente: <span th:text="${contrato.cliente.id} + ' - ' + ${contrato.cliente.nome}"></span><br>
         Status:
         <select th:field="*{status}">
             <option th:value="ATIVO" th:text="'ATIVO'"></option>
             <option th:value="ENCERRADO" th:text="'ENCERRADO'"></option>
             <option th:value="SUSPENSO" th:text="'SUSPENSO'"></option>
+        </select><br>
+
+        Cliente: <span th:text="${contrato.cliente.id} + ' - ' + ${contrato.cliente.nome}"></span><br>
+
+        Funcionário (Advogado):
+        <select th:field="*{funcionario}" required>
+            <option th:each="func : ${funcionarios}" th:value="${func.id}" th:text="${func.nome}"
+                th:selected="${contrato.funcionario != null and contrato.funcionario.id == func.id}">
+            </option>
         </select><br>
 
         Nova Data de Início: <input type="datetime-local" th:field="*{dataInicio}" required><br>

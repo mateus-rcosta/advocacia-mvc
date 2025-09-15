@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.unifil.advocacia.gerenciador.cliente.model.Cliente;
 import com.unifil.advocacia.gerenciador.contrato.enums.Status;
 import com.unifil.advocacia.gerenciador.faturamento.model.Faturamento;
 import com.unifil.advocacia.gerenciador.funcionario.model.Funcionario;
@@ -61,6 +62,10 @@ public class Contrato {
     @ManyToOne
     @JoinColumn(name = "funcionario_id", nullable = false)
     private Funcionario funcionario;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
 
     @OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Faturamento> faturamentos = new ArrayList<>();

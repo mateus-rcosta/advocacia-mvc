@@ -2,9 +2,10 @@ package com.unifil.advocacia.gerenciador.contrato.dto;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.unifil.advocacia.gerenciador.contrato.enums.Status;
 
-import jakarta.validation.constraints.Max;
 
 public record PutContrato(
         String titulo,
@@ -19,7 +20,7 @@ public record PutContrato(
 
         Status status,
         
-        @Max(20) 
+        @Length(max = 20) 
         String tipo
     ) {
 }
