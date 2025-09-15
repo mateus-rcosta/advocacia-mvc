@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar Processo</title>
+</head>
+
+<body>
+    <h1>Editar Processo</h1>
+
+    <form th:action="@{/processos/editar/{id}(id=${processo.id})}" method="post" th:object="${processo}">
+        Número do Processo: <input type="text" th:field="*{numero}" required><br>
+        Descrição: <textarea th:field="*{descricao}"></textarea><br>
+
+        Tipo:
+        <select th:field="*{tipo}">
+            <option th:value="CIVIL" th:text="'CIVIL'"></option>
+            <option th:value="CRIMINAL" th:text="'CRIMINAL'"></option>
+            <option th:value="TRABALHISTA" th:text="'TRABALHISTA'"></option>
+        </select><br>
+
+        Status:
+        <select th:field="*{status}">
+            <option th:value="EM_ANDAMENTO" th:text="'EM_ANDAMENTO'"></option>
+            <option th:value="CONCLUIDO" th:text="'CONCLUIDO'"></option>
+            <option th:value="SUSPENSO" th:text="'SUSPENSO'"></option>
+        </select><br>
+
+        Contrato: <span th:text="${processo.contrato.titulo}"></span><br>
+
+        Data Criação: <span th:text="${processo.createdAt}"></span><br>
+        Data Atualização: <span th:text="${processo.updatedAt}"></span><br>
+
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <div th:if="${errorMessage}" style="color:red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <a th:href="@{/processos}">Voltar</a>
+</body>
+
+</html>

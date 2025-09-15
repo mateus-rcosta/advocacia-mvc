@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Novo Processo</title>
+</head>
+
+<body>
+    <h1>Novo Processo</h1>
+
+    <form th:action="@{/processos}" method="post" th:object="${processo}">
+        Número de processo: <input type="text" th:field="*{numero}" required><br>
+        Descrição: <textarea th:field="*{descricao}"></textarea><br>
+
+        Tipo:
+        <select th:field="*{tipo}">
+            <option th:value="CIVIL" th:text="'CIVIL'"></option>
+            <option th:value="CRIMINAL" th:text="'CRIMINAL'"></option>
+            <option th:value="TRABALHISTA" th:text="'TRABALHISTA'"></option>
+        </select><br>
+
+        Contrato:
+        <select th:field="*{contratoId}">
+            <option th:each="contrato : ${contratos}" 
+                    th:value="${contrato.id}" 
+                    th:text="${contrato.titulo}">
+            </option>
+        </select><br>
+
+        Data de Abertura:
+        <input type="datetime-local" th:field="*{dataAbertura}" required><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <div th:if="${errorMessage}" style="color:red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <a th:href="@{/processos}">Voltar</a>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Processos</title>
+</head>
+
+<body>
+    <h1>Processos</h1>
+
+    <a th:href="@{/processos/novo}">Novo Processo</a>
+
+    <div th:if="${errorMessage}" style="color:red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Número de Processo</th>
+                <th>Descrição</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th>Contrato</th>
+                <th>Data Criação</th>
+                <th>Data Atualização</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="processo : ${processos}">
+                <td th:text="${processo.id}"></td>
+                <td th:text="${processo.numero}"></td>
+                <td th:text="${processo.descricao}"></td>
+                <td th:text="${processo.tipo}"></td>
+                <td th:text="${processo.status}"></td>
+                <td th:text="${processo.contrato.titulo}"></td>
+                <td th:text="${processo.createdAt}"></td>
+                <td th:text="${processo.updatedAt}"></td>
+                <td>
+                    <a th:href="@{/processos/editar/{id}(id=${processo.id})}">Editar</a>
+                    <a th:href="@{/processos/excluir/{id}(id=${processo.id})}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Voltar</a>
+</body>
+
+</html>
