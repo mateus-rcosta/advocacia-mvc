@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <title>Home</title>
 </head>
+
 <body>
-<h2>Bem-vindo!</h2>
+    <h2>Bem-vindo!</h2>
 
-<p>
-    Logado como: 
-    <span th:text="${#authentication.principal.funcionario.nome}"></span> 
-    <br>
-    (<span th:text="${#authentication.principal.funcionario.email}"></span>)
-</p>
+    <p>
+        Logado como:
+        <span th:text="${#authentication.principal.funcionario.nome}"></span>
+        <br>
+        (<span th:text="${#authentication.principal.funcionario.email}"></span>)
+    </p>
 
-<div sec:authorize="hasRole('ADMINISTRADOR')">
-    <a th:href="@{/funcionarios}">
-        Gerenciar Funcionários
-    </a>
-</div>
-
-<form th:action="@{/logout}" method="post">
-    <button type="submit">Sair</button>
-</form>
+    <div sec:authorize="hasRole('ADMINISTRADOR')">
+        <a th:href="@{/funcionarios}">
+            Gerenciar Funcionários
+        </a>
+    </div>
+    <p>
+        <a th:href="@{/contratos}">Gerenciar Contratos</a>
+    </p>
+    <p>
+        <a th:href="@{/faturamentos}">Gerenciar Faturamentos</a>
+    </p>
+    <p>
+        <a th:href="@{/processos}">Gerenciar Processos</a>
+    </p>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Sair</button>
+    </form>
 </body>
+
 </html>
