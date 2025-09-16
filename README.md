@@ -190,6 +190,6 @@ Este projeto é de uso acadêmico/profissional. Licença a definir.
 ---
 ## Feito por:
 
-Heber Junior
-Mateus Costa
-Paulo Teodoro
+- Heber Junior
+- Mateus Costa
+- Paulo Teodoro
