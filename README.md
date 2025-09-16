@@ -16,14 +16,14 @@ Inclui **autenticação** e **autorização baseada em papéis** (`ADMIN` e `USE
 ---
 
 ## ⚙️ Tecnologias Utilizadas
-- **Java 17+**
-- **Spring Boot 3.x**
+- **Java 24**
+- **Spring Boot 3.5.5**
   - Spring Web (MVC)
   - Spring Data JPA
   - Spring Security
   - Spring Validation
 - **Thymeleaf** (Views HTML dinâmicas)
-- **PostgreSQL** (produção) / **H2** (desenvolvimento)
+- **PostgreSQL - 17** (produção) / **H2** (desenvolvimento)
 - **Maven**
 - **Docker + Docker Compose**
 - **Lombok**
@@ -102,6 +102,8 @@ Objetos usados para entrada/saída de dados (criação/edição). Exemplos:
 - `PostFuncionario.java`, `PutFuncionario.java`
 - `PostCliente.java`, `PutCliente.java`
 - `PostProcesso.java`, `PutProcesso.java`
+- `PostFaturamento`, `PutFaturamento`
+- `PostContrato`, `PutContrato`
 
 ### 🔹 View (Thymeleaf)
 Templates que exibem os dados ao usuário:
