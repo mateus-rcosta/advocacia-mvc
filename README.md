@@ -170,8 +170,9 @@ mvn spring-boot:run
 ```
 
 Aplicação disponível em: [http://localhost:8080](http://localhost:8080)
-E-mail de administrador: admin@admin.com
-Senha: admin
+
+- E-mail de administrador: admin@admin.com
+- Senha: admin
 ---
 
 ## 🛠️ Roadmap
