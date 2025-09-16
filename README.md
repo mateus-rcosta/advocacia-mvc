@@ -170,7 +170,8 @@ mvn spring-boot:run
 ```
 
 Aplicação disponível em: [http://localhost:8080](http://localhost:8080)
-
+E-mail de administrador: admin@admin.com
+Senha: admin
 ---
 
 ## 🛠️ Roadmap
@@ -186,8 +187,8 @@ Aplicação disponível em: [http://localhost:8080](http://localhost:8080)
 Este projeto é de uso acadêmico/profissional. Licença a definir.
 
 ---
-Feito por:
+## Feito por:
 
-## Heber Junior
-## Mateus Costa
-## Paulo Teodoro
+Heber Junior
+Mateus Costa
+Paulo Teodoro
